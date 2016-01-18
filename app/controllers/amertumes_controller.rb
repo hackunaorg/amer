@@ -1,5 +1,6 @@
 class AmertumesController < ApplicationController
   before_action :set_amertume, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /amertumes
   # GET /amertumes.json
@@ -14,7 +15,7 @@ class AmertumesController < ApplicationController
 
   # GET /amertumes/new
   def new
-    @amertume = Amertume.new
+    @amertume = current_user.amertumes.build
   end
 
   # GET /amertumes/1/edit
@@ -24,7 +25,7 @@ class AmertumesController < ApplicationController
   # POST /amertumes
   # POST /amertumes.json
   def create
-    @amertume = Amertume.new(amertume_params)
+    @amertume = current_user.amertumes.build(amertume_params)
 
     respond_to do |format|
       if @amertume.save

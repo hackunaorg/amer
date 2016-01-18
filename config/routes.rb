@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :amertumes
   
-  root to: 'visitors#index'
+  root to: 'amertumes#index'
+
   devise_for :users
   resources :users
 end
